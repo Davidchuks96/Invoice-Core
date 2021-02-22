@@ -1,0 +1,67 @@
+﻿
+@{
+    ViewData["Title"] = "BarcodeGenerate";
+    Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+<style type="text/css">
+    .bg_1 {
+        background-color: green;
+    }
+
+    .bg_2 {
+        background-color: gray;
+    }
+
+
+    .error_msg {
+        color: #f00;
+        display: none;
+    }
+
+    .table {
+        /* width: 100%; */
+        /* max-width: 100%; */
+        margin-bottom: 0px;
+    }
+</style>
+
+<h2>Barcode Generate</h2>
+
+
+<div class="page-wrapper">
+    <div class="container-fluid">
+        <!-- Start Page Content -->
+
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Sales List</h5>
+                <form asp-controller="admin" asp-action="BarcodeGenerate" method="post">
+                    <div class="row">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="col-md-3 col-md-offset-1">
+                            @Html.Label("Product", null, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @Html.TextBox("productId", null, new { @class = "form-control", @id = "FromDate", @placeholder = "" })
+
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            @Html.Label("Quantity", null, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @Html.TextBox("quantity", null, new { @class = "form-control", @id = "ToDate", @placeholder = "Enter Quantity" })
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 ">
+                            <br />
+                            <input type="submit" id="getReports" style="margin-top: 10px" id="btnSubmit" value="Generate Barcode" class="btn btn-success" />
+                        </div>
+
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

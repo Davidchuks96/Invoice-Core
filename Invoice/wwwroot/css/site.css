@@ -1,0 +1,107 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Wrapping element */
+/* Set some basic padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Carousel */
+.carousel-caption p {
+    font-size: 20px;
+    line-height: 1.4;
+}
+
+/* Make .svg files in the carousel display properly in older browsers */
+.carousel-inner .item img[src$=".svg"] {
+    width: 100%;
+}
+
+/* QR code generator */
+#qrCode {
+    margin: 15px;
+}
+
+/* Hide/rearrange for smaller screens */
+@media screen and (max-width: 767px) {
+    /* Hide captions */
+    .carousel-caption {
+        display: none;
+    }
+}
+
+
+
+/* custom css */
+
+.quantity {
+    position: relative;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.quantity input {
+    width: 45px;
+    height: 42px;
+    line-height: 1.65;
+    float: left;
+    display: block;
+    padding: 0;
+    margin: 0;
+    padding-left: 20px;
+    border: 1px solid #eee;
+}
+
+    .quantity input:focus {
+        outline: 0;
+    }
+
+.quantity-nav {
+    float: left;
+    position: relative;
+    height: 42px;
+}
+
+.quantity-button {
+    position: relative;
+    cursor: pointer;
+    border-left: 1px solid #eee;
+    width: 20px;
+    text-align: center;
+    color: #333;
+    font-size: 13px;
+    font-family: "Trebuchet MS", Helvetica, sans-serif !important;
+    line-height: 1.7;
+    -webkit-transform: translateX(-100%);
+    transform: translateX(-100%);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+    .quantity-button.quantity-up {
+        position: absolute;
+        height: 50%;
+        top: 0;
+        border-bottom: 1px solid #eee;
+    }
+
+    .quantity-button.quantity-down {
+        position: absolute;
+        bottom: -1px;
+        height: 50%;
+    }

@@ -1,0 +1,132 @@
+﻿@model IEnumerable<Invoice.Core.Entity.SalesModel>
+@{
+    ViewData["Title"] = "SalesReport";
+    Layout = "~/Views/Shared/_adminLayout.cshtml";
+    var total = 0.0;
+}
+
+<style type="text/css">
+    .bg_1 {
+        background-color: green;
+    }
+
+    .bg_2 {
+        background-color: gray;
+    }
+
+
+    .error_msg {
+        color: #f00;
+        display: none;
+    }
+
+    .table {
+        /* width: 100%; */
+        /* max-width: 100%; */
+        margin-bottom: 0px;
+    }
+</style>
+
+
+
+<div class="page-wrapper">
+    <div class="container-fluid">
+        <!-- Start Page Content -->
+
+        <div class="card">
+            <div class="card-body">
+                <form asp-controller="sales" asp-action="SalesReport" method="get">
+                    <div class="row">
+
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="col-md-4 col-md-offset-1">
+                            @Html.Label("FROM", null, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @Html.TextBox("From", null, new { @class = "form-control", @id = "FromDate", @placeholder = "Select from date" })
+                                <small id="error_FromDate" class="form-text error_msg"> from date is Required</small>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            @Html.Label("TO", null, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @Html.TextBox("To", null, new { @class = "form-control", @id = "ToDate", @placeholder = "Select to date" })
+                                <small id="error_ToDate" class="form-text error_msg "> to date is Required</small>
+                            </div>
+                        </div>
+                        <div class="col-md-3 ">
+                            <br />
+                            <input type="submit" id="getReports" style="margin-top: 10px" id="btnSubmit" value="Get Reports" class="btn btn-success" />
+                        </div>
+
+                    </div>
+                </form>
+                @if (Model.Any())
+                {
+                    <div class="row">
+                        <div class="table-responsive m-t-12">
+                            <table id="example23" class="display nowrap table table-hover  table-bordered" cellspacing="0" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th>Code</th>
+                                        <th>Date</th>
+                                        <th>Total</th>
+                                        <th>Discount</th>
+                                        <th>Grand Total</th>
+                                        <th>Status</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>@item.SaleCode</td>
+                                            <td>@item.SalesDate.ToString("dd/MM/yyyy")</td>
+                                            <td>@item.Total</td>
+                                            <td>@item.Discount</td>
+                                            <td>
+                                                @item.GrandTotal
+                                                @{total = total + item.GrandTotal;}
+                                            </td>
+                                            <td>
+                                                @if (item.Status == "Due")
+                                                {
+                                                    <label class="label label-warning">due</label>
+
+                                                }
+                                                @if (item.Status == "Paid")
+                                                {
+                                                    <label class="label label-success">paid</label>
+
+                                                }
+                                            </td>
+                                        </tr>
+
+                                    }
+                                    <tr>
+                                        <td colspan="4"><strong>Total : </strong></td>
+                                        <td colspan="2"><strong class="pull-left">@total</strong> </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <!-- End PAge Content -->
+    </div>
+</div>
+
+
+
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#FromDate").datepicker();
+            $("#ToDate").datepicker();
+        });
+    </script>
+}
+

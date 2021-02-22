@@ -1,0 +1,58 @@
+﻿@model Invoice.Core.Entity.ProductModel
+@{
+    ViewData["Title"] = "Add Product";
+    Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+
+<div class="page-wrapper">
+    <div class="container-fluid">
+        <!-- Start Page Content -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-title">
+                        <h4>New Product</h4>
+
+                    </div>
+                    <div class="card-body">
+                        <div class="basic-elements">
+                            <form asp-controller="admin" asp-action="Addproduct" method="post">
+                                <div class="row">
+                                    <div class="col-lg-8">
+
+                                        <div class="form-group">
+                                            <label asp-for="Code"></label>
+                                            <input type="text" asp-for="Code" class="form-control" placeholder="Enter Product Code">
+                                            <span asp-validation-for="Code" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="Name"></label>
+                                            <input type="text" asp-for="Name" class="form-control" placeholder="Enter Product Name">
+                                            <span asp-validation-for="Name" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="Price"></label>
+                                            <input asp-for="Price" class="form-control" type="text" placeholder="Enter Price">
+                                            <span asp-validation-for="Price" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="Description"></label>
+                                            <input asp-for="Description" class="form-control" type="text" placeholder="Enter Description">
+                                            <span asp-validation-for="Description" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-success"> Save Changes </button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End PAge Content -->
+    </div>
+</div>
+

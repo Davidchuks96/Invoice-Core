@@ -1,0 +1,82 @@
+﻿@model IEnumerable<Invoice.Core.Entity.SalesModel>
+@{
+    ViewData["Title"] = "Sales List";
+    Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+
+
+
+<div class="page-wrapper">
+    <div class="container-fluid">
+        <!-- Start Page Content -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Sales List</h5>
+                        <div class="table-responsive m-t-10">
+                            <table id="example23" class="display nowrap table table-hover  table-bordered" cellspacing="0" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th>Code</th>
+                                        <th>Date</th>
+                                        <th>Total</th>
+                                        <th>Discount</th>
+                                        <th>Grand Total</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>@item.SaleCode</td>
+                                            <td>@item.SalesDate.ToString("dd/MM/yyyy")</td>
+                                            <td>@item.Total</td>
+                                            <td>@item.Discount</td>
+                                            <td>@item.GrandTotal</td>
+                                            <td>
+                                                @if (item.Status == "Due")
+                                                {
+                                                    <label class="label label-warning">due</label>
+
+                                                }
+                                                @if (item.Status == "Paid")
+                                                {
+                                                    <label class="label label-success">paid</label>
+
+                                                }
+                                            </td>
+                                            <td>
+                                                <a href="@Url.Action("SaleInvoice","Sales", new {saleId = item.Id,style=1})" title="Invoice 1" class="btn btn-icon btn-primary btn-xs m-b-5"><i class="fa fa-print"> </i> </a>
+
+                                                <a href="@Url.Action("SaleInvoice","Sales", new {saleId = item.Id,style=2})" title="Invoice 2" class="btn btn-icon btn-primary btn-xs m-b-5"><i class="fa fa-print"> </i> </a>
+
+                                                <a href="@Url.Action("EditSale", "Sales", new {saleId= item.Id})" title="Edit" class="btn btn-icon btn-warning btn-xs m-b-5">
+                                                    <i class="fa fa-edit"></i>
+                                                </a>
+                                                <a href="@Url.Action("DeleteSale", "Sales", new {saleId = item.Id})"  title="delete" onclick="return confirm('Are you sure you want to Remove this customer?')" class="btn btn-icon btn-danger btn-xs m-b-5">
+                                                    <i class="fa fa-remove"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End PAge Content -->
+    </div>
+</div>
+
+
+
+
+
+@section scripts{
+
+}

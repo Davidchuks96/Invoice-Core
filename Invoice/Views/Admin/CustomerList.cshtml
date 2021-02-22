@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Invoice.Core.Entity.CustomerModel>
+@{
+    ViewData["Title"] = "Customer List";
+    Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+
+
+
+<div class="page-wrapper">
+    <div class="container-fluid">
+        <!-- Start Page Content -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Customer List</h4>
+                        <div class="table-responsive m-t-40">
+                            <table id="example23" class="display nowrap table table-hover  table-bordered" cellspacing="0" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Phone</th>
+                                        <th>Notes</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>@item.Name</td>
+                                            <td>@item.Email</td>
+                                            <td>@item.Phone</td>
+                                            <td>@item.Notes</td>
+                                            <td>
+                                                <a href="@Url.Action("EditCustomer", "Admin", new {customerId = item.Id})" class="btn btn-icon btn-warning btn-xs m-b-5">
+                                                    <i class="fa fa-edit"></i>
+                                                </a>
+                                                <a href="@Url.Action("DeleteCustomer", "Admin", new {customerId = item.Id})" onclick="return confirm('Are you sure you want to Remove this customer?')" class="btn btn-icon btn-danger btn-xs m-b-5">
+                                                    <i class="fa fa-remove"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End PAge Content -->
+    </div>
+</div>
+
+
+
+
+
+@section scripts{
+    
+}
